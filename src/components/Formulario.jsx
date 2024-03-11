@@ -5,7 +5,8 @@ const Formulario = () => {
   const [form, setForm] = useState({ nombre: '', email: '', pass: '', confirmarPass: '' })
   const [alerta, setAlerta] = useState(null)
 
-  const validar = () => {
+  const validar = (e) => {
+    e.preventDefault()
     if (form.pass !== form.confirmarPass) {
       setAlerta(<Alerta tipoVariant='danger' error='Error' descripcion='Las contraseñas no coinciden. Por favor, verifica tus contraseñas.' />)
       return
@@ -17,57 +18,55 @@ const Formulario = () => {
     setAlerta(<Alerta tipoVariant='success' error='Éxito' descripcion='¡Tu cuenta ha sido creada exitosamente! ¡Bienvenido!' />)
   }
   return (
-    <>
-      <form onSubmit={validar}>
-        <input
-          type='text'
-          placeholder='Nombre'
-          value={form.nombre}
-          onChange={e => {
-            setForm({
-              ...form,
-              nombre: e.target.value
-            })
-          }}
-        />
-        <input
-          type='email'
-          placeholder='Email'
-          value={form.email}
-          onChange={e => {
-            setForm({
-              ...form,
-              email: e.target.value
-            })
-          }}
-        />
-        <input
-          type='password'
-          placeholder='Contraseña'
-          value={form.pass}
-          onChange={e => {
-            setForm({
-              ...form,
-              pass: e.target.value
-            })
-          }}
-        />
-        <input
-          type='password'
-          placeholder='Confirmar Contraseña'
-          value={form.confirmarPass}
-          onChange={e => {
-            setForm({
-              ...form,
-              confirmarPass: e.target.value
-            })
-          }}
-        />
-        <button type='submit'>Crear Cuenta</button>
-        <br />
-        {alerta}
-      </form>
-    </>
+    <form onSubmit={validar}>
+      <input
+        type='text'
+        placeholder='Nombre'
+        value={form.nombre}
+        onChange={e => {
+          setForm({
+            ...form,
+            nombre: e.target.value
+          })
+        }}
+      />
+      <input
+        type='email'
+        placeholder='Email'
+        value={form.email}
+        onChange={e => {
+          setForm({
+            ...form,
+            email: e.target.value
+          })
+        }}
+      />
+      <input
+        type='password'
+        placeholder='Contraseña'
+        value={form.pass}
+        onChange={e => {
+          setForm({
+            ...form,
+            pass: e.target.value
+          })
+        }}
+      />
+      <input
+        type='password'
+        placeholder='Confirmar Contraseña'
+        value={form.confirmarPass}
+        onChange={e => {
+          setForm({
+            ...form,
+            confirmarPass: e.target.value
+          })
+        }}
+      />
+      <button type='submit'>Crear Cuenta</button>
+      <br />
+      {alerta}
+    </form>
   )
 }
 
